@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Mover : MonoBehaviour
+namespace RPG.Movement 
+{
+    public class Mover : MonoBehaviour
 {
     [SerializeField] Transform target;
 
@@ -35,4 +37,5 @@ public class Mover : MonoBehaviour
     public void MoveTo(Vector3 destination) {
         _navMeshAgent.SetDestination(destination);
     }
+}
 }

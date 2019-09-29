@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Movement;
 
-public class PlayerController : MonoBehaviour
+namespace RPG.Control 
+{
+    public class PlayerController : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -31,4 +34,5 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+}
 }
