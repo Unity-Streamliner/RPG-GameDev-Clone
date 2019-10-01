@@ -10,24 +10,39 @@ namespace RPG.Combat {
 
         Transform target;
 
+        private Mover _moverComponent;
+
+        public void Start()
+        {
+            _moverComponent = GetComponent<Mover>();
+        }
+
         public void Update()
         {
+            if (target == null) return;
             
-            if (target != null)
+            if (!GetIsInRange())
             {
-                bool isInRange = weaponRange >= Vector3.Distance(transform.position, target.position);
-                if (isInRange){
-                    target = null;
-                    GetComponent<Mover>().Stop();
-                } 
-                GetComponent<Mover>().MoveTo(target.position);
+                _moverComponent.MoveTo(target.position);
+            } else {
+                _moverComponent.Stop();
             }
+        }
+
+        private bool GetIsInRange()
+        {
+            return weaponRange >= Vector3.Distance(transform.position, target.position);
         }
 
         public void Attack(CombatTarget combatTarget) 
         {
             target = combatTarget.transform;
             print("Take that you short, squat peasant!");
+        }
+
+        public void Cancel()
+        {
+            target = null;
         }
     }
 
