@@ -9,8 +9,9 @@ namespace RPG.Combat {
 
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float weaponDamage = 10f;
 
-        Transform target;
+        CombatTarget target;
         float timeSinceLastAttack = 0;
 
         private Mover _moverComponent;
@@ -28,7 +29,7 @@ namespace RPG.Combat {
             
             if (!GetIsInRange())
             {
-                _moverComponent.MoveTo(target.position);
+                _moverComponent.MoveTo(target.transform.position);
             } else {
                 _moverComponent.Cancel();
                 AttackBehaviour();
@@ -41,18 +42,19 @@ namespace RPG.Combat {
             {
                 GetComponent<Animator>().SetTrigger("attack");
                 timeSinceLastAttack = 0;
+                // this will trigger the hit event.
             }
         }
 
         private bool GetIsInRange()
         {
-            return weaponRange >= Vector3.Distance(transform.position, target.position);
+            return weaponRange >= Vector3.Distance(transform.position, target.transform.position);
         }
 
         public void Attack(CombatTarget combatTarget) 
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget;
             print("Take that you short, squat peasant!");
         }
 
@@ -64,7 +66,7 @@ namespace RPG.Combat {
         // Animation event
         void Hit()
         {
-
+            target.Health.TakeDamage(weaponDamage);
         }
     }
 
