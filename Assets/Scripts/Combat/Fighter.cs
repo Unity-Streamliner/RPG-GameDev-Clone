@@ -39,6 +39,8 @@ namespace RPG.Combat {
             }
         }
 
+        public bool CanAttack(CombatTarget combatTarget) =>  combatTarget != null && !combatTarget.Health.IsDead;
+
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
