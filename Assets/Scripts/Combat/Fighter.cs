@@ -15,10 +15,12 @@ namespace RPG.Combat {
         float timeSinceLastAttack = 0;
 
         private Mover _moverComponent;
+        private Animator _animator;
 
         public void Start()
         {
             _moverComponent = GetComponent<Mover>();
+            _animator = GetComponent<Animator>();
         }
 
         public void Update()
@@ -26,6 +28,7 @@ namespace RPG.Combat {
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
+            if (target.Health.IsDead) return;
             
             if (!GetIsInRange())
             {
@@ -60,6 +63,7 @@ namespace RPG.Combat {
 
         public void Cancel()
         {
+            _animator.SetTrigger("stopAttack");
             target = null;
         }
 
