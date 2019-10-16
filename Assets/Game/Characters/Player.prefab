@@ -1,33 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6980479246319942054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618592327034736496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba0db1a55958a548aead6ff4085643d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponRange: 1.55
-  timeBetweenAttacks: 1
-  weaponDamage: 10
---- !u!114 &551378433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618592327034736496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee9e292b9c798354a88bb447cb8ed3d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1460001876933891528
+--- !u!114 &8210563977464919830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,32 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bb720d077e1a742b591cd1444d1602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2507981341738860695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618592327034736496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9341b66189797754f84096b5d28b8aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: {fileID: 0}
---- !u!114 &5827211318982876244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618592327034736496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d01ef4d4a0b284ea364c51a9f27284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!1001 &964113375985585200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,6 +22,11 @@ PrefabInstance:
     - target: {fileID: 2969600419659694912, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969600419659694912, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6362481577220886506, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
@@ -132,11 +84,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2217828818526807382, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 6137609460763657178}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089, type: 3}
 --- !u!1 &2618592327034736496 stripped
@@ -151,7 +98,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 964113375985585200}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3949246237069089724
+--- !u!1001 &5156179834904824237
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
