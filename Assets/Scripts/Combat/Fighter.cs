@@ -46,7 +46,7 @@ namespace RPG.Combat {
             transform.LookAt(target.transform);
             if (timeSinceLastAttack > timeBetweenAttacks) 
             {
-                GetComponent<Animator>().SetTrigger("attack");
+                StartAttack();
                 timeSinceLastAttack = 0;
                 // this will trigger the hit event.
             }
@@ -66,13 +66,26 @@ namespace RPG.Combat {
 
         public void Cancel()
         {
-            _animator.SetTrigger("stopAttack");
+            StopAttack();
             target = null;
+        }
+
+        private void StartAttack()
+        {
+            _animator.ResetTrigger("stopAttack");
+            _animator.SetTrigger("attack");
+        }
+
+        private void StopAttack()
+        {
+            _animator.SetTrigger("stopAttack");
+            _animator.ResetTrigger("attack");
         }
 
         // Animation event
         void Hit()
         {
+            if (target == null) return;
             target.Health.TakeDamage(weaponDamage);
         }
     }
