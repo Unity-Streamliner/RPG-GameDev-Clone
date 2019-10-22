@@ -45,5 +45,11 @@ namespace RPG.Control
             float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
             return distanceToPlayer < chaseDistance;
         }
+
+        private void OnDrawGizmosSelected() 
+        {
+            Gizmos.color = Color.blue; 
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
+        }
     }
 }
