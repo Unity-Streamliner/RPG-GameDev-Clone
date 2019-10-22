@@ -12,7 +12,7 @@ namespace RPG.Combat {
         [SerializeField] float weaponDamage = 10f;
 
         GameObject target;
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         private Mover _moverComponent;
         private Animator _animator;

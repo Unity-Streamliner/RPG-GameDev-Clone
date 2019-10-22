@@ -27,32 +27,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
---- !u!114 &-3853011731180788347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000051841666772542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40d01ef4d4a0b284ea364c51a9f27284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 15
---- !u!114 &7012777379543876998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000051841666772542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9341b66189797754f84096b5d28b8aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: {fileID: 0}
 --- !u!1001 &3672614391733497214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,6 +103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Speed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809364186357174367, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
+        type: 3}
+      propertyPath: health
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5827211318982876244, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
         type: 3}

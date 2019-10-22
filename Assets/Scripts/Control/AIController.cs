@@ -1,6 +1,7 @@
 using UnityEngine;
 using RPG.Combat;
 using UnityEngine.AI;
+using RPG.Core;
 
 namespace RPG.Control
 {
@@ -9,6 +10,8 @@ namespace RPG.Control
         [SerializeField] float chaseDistance = 5f;
 
         Fighter _fighter;
+        Health _health;
+        
         Vector3 startPosition;
         NavMeshAgent _navMeshAgent;
         GameObject _player;
@@ -17,6 +20,7 @@ namespace RPG.Control
         {
             _player = GameObject.FindWithTag("Player");
             _fighter = GetComponent<Fighter>();
+            _health = GetComponent<Health>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             startPosition = transform.position;
             print(gameObject.name + " start position " + startPosition);
@@ -24,6 +28,7 @@ namespace RPG.Control
 
         void Update()
         {
+            if (_health.IsDead) return;
             if (InAttackRangeOfPlayer() && _fighter.CanAttack(_player)) {
                 Debug.Log(gameObject.name + " Attack " + _player.name);
                 _fighter.Attack(_player);
