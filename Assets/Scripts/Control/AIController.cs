@@ -2,6 +2,7 @@ using UnityEngine;
 using RPG.Combat;
 using UnityEngine.AI;
 using RPG.Core;
+using RPG.Movement;
 
 namespace RPG.Control
 {
@@ -12,18 +13,20 @@ namespace RPG.Control
         Fighter _fighter;
         Health _health;
         
-        Vector3 startPosition;
+        Vector3 guardPosition;
         NavMeshAgent _navMeshAgent;
         GameObject _player;
+        Mover _mover;
 
         void Start() 
         {
             _player = GameObject.FindWithTag("Player");
             _fighter = GetComponent<Fighter>();
             _health = GetComponent<Health>();
+            _mover = GetComponent<Mover>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            startPosition = transform.position;
-            print(gameObject.name + " start position " + startPosition);
+            guardPosition = transform.position;
+            print(gameObject.name + " start position " + guardPosition);
         }
 
         void Update()
@@ -34,9 +37,9 @@ namespace RPG.Control
                 _fighter.Attack(_player);
             } else if(!InAttackRangeOfPlayer())
             {
-                _fighter.Cancel();
-                _navMeshAgent.SetDestination(startPosition);
-                Debug.Log(gameObject.name + " returning to start position. " + startPosition);
+                _mover.StartMoveAction(guardPosition);
+                _navMeshAgent.SetDestination(guardPosition);
+                Debug.Log(gameObject.name + " returning to start position. " + guardPosition);
             }
         }
 
