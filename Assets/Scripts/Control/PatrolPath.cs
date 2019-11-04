@@ -13,8 +13,15 @@ namespace RPG.Control
             for (int i = 0; i < transform.childCount; i++)
             {
                 Gizmos.color = Color.yellow; 
-                Gizmos.DrawSphere(transform.GetChild(i).transform.position, waypointGizmoRadius);
+                Gizmos.DrawSphere(GetWaypoint(i), waypointGizmoRadius);
+                int nextIndex = (i + 1) == transform.childCount ? 0 : i + 1;
+                Gizmos.DrawLine( GetWaypoint(i), GetWaypoint(nextIndex));
             }
+        }
+
+        private Vector3 GetWaypoint(int i)
+        {
+            return transform.GetChild(i).position;
         }
     }
 }
