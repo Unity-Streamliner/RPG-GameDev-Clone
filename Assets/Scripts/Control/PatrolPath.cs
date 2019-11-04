@@ -14,14 +14,18 @@ namespace RPG.Control
             {
                 Gizmos.color = Color.yellow; 
                 Gizmos.DrawSphere(GetWaypoint(i), waypointGizmoRadius);
-                int nextIndex = (i + 1) == transform.childCount ? 0 : i + 1;
-                Gizmos.DrawLine( GetWaypoint(i), GetWaypoint(nextIndex));
+                Gizmos.DrawLine( GetWaypoint(i), GetWaypoint(GetNextWaypointIndex(i)));
             }
         }
 
-        private Vector3 GetWaypoint(int i)
+        public Vector3 GetWaypoint(int i)
         {
             return transform.GetChild(i).position;
+        }
+
+        public int GetNextWaypointIndex(int currentIndex) 
+        {
+            return (currentIndex + 1) == transform.childCount ? 0 : currentIndex + 1;
         }
     }
 }
