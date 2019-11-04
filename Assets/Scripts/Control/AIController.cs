@@ -10,6 +10,7 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 5f;
+        [SerializeField] float waypointDwellTime = 2f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         int currentWaypointIndex = 0;
@@ -19,6 +20,7 @@ namespace RPG.Control
         
         Vector3 guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         NavMeshAgent _navMeshAgent;
         GameObject _player;
         Mover _mover;
@@ -38,7 +40,6 @@ namespace RPG.Control
         {
             if (_health.IsDead) return;
             if (InAttackRangeOfPlayer() && _fighter.CanAttack(_player)) {
-                timeSinceLastSawPlayer = 0;
                 AttackBehaviour();
             }
             else if (timeSinceLastSawPlayer < suspicionTime) 
@@ -50,11 +51,19 @@ namespace RPG.Control
                 PatrolBehaviour();
                 Debug.Log(gameObject.name + " returning to start position. " + guardPosition);
             }
+            
+            UpdateTimers();
+        }
+
+        private void UpdateTimers()
+        {
             timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceArrivedAtWaypoint += Time.deltaTime;
         }
 
         private void AttackBehaviour() 
         {
+            timeSinceLastSawPlayer = 0;
             _fighter.Attack(_player);
         }
 
@@ -70,11 +79,15 @@ namespace RPG.Control
             {
                 if (AtWaypoint())
                 {
+                    timeSinceArrivedAtWaypoint = 0;
                     CycleWaipoint();
                 }
                 nextPosition = GetCurrentWaypoint();
             }
-             _mover.StartMoveAction(nextPosition);
+            if (timeSinceArrivedAtWaypoint > waypointDwellTime) 
+            {
+                _mover.StartMoveAction(nextPosition);
+            }
         }
 
         private bool AtWaypoint() 
