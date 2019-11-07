@@ -33,7 +33,7 @@ namespace RPG.Combat {
             
             if (!GetIsInRange())
             {
-                _moverComponent.MoveTo(target.transform.position);
+                _moverComponent.MoveTo(target.transform.position, 1f);
             } else {
                 _moverComponent.Cancel();
                 AttackBehaviour();
