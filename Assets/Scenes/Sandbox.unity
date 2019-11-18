@@ -2254,6 +2254,8 @@ GameObject:
   - component: {fileID: 1120265614}
   - component: {fileID: 1120265617}
   - component: {fileID: 1120265616}
+  - component: {fileID: 1120265620}
+  - component: {fileID: 1120265619}
   - component: {fileID: 1120265618}
   m_Layer: 2
   m_Name: Intro Sequence
@@ -2359,6 +2361,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acda03f5fc0164edc8e4296ce20a2d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1120265619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120265612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9aad5178a10c476d982261ed069c900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1120265620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1120265612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4983fbcfea5c4be5856db7eb7983d8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1120741733
