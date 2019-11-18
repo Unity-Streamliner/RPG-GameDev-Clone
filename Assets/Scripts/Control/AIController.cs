@@ -51,7 +51,7 @@ namespace RPG.Control
             else 
             {
                 PatrolBehaviour();
-                Debug.Log(gameObject.name + " returning to start position. " + guardPosition);
+                //Debug.Log(gameObject.name + " returning to start position. " + guardPosition);
             }
             
             UpdateTimers();
