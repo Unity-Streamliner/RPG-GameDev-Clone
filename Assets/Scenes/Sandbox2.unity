@@ -4318,5 +4318,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4956254149114754357, guid: c68feeea327fc49f08733615b360464b,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c68feeea327fc49f08733615b360464b, type: 3}
