@@ -8,8 +8,14 @@ namespace RPG.SceneManagement
     public class Portal : MonoBehaviour 
     {
 
+        enum DestinationIndentifier
+        {
+            A, B, C, D, E
+        }
+
         [SerializeField] int sceneToLoad = -1;
         [SerializeField] Transform spawnPoint;
+        [SerializeField] DestinationIndentifier destination;
         
         private void OnTriggerEnter(Collider other) {
             print("Portal trigged");
@@ -18,6 +24,11 @@ namespace RPG.SceneManagement
 
         private IEnumerator Transition() 
         {
+            if (sceneToLoad < 0) 
+            {
+                Debug.LogError("Scene to load not set.");
+                yield break;
+            }
             DontDestroyOnLoad(this.gameObject);
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
             Portal portal = GetOtherPortal();
@@ -30,6 +41,7 @@ namespace RPG.SceneManagement
             foreach (Portal portal in FindObjectsOfType<Portal>())
             {
                 if (portal == this) continue;
+                if (portal.destination != this.destination) continue;
                 return portal;
             }
             return null;
