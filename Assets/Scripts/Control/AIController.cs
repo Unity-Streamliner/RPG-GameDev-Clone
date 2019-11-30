@@ -35,7 +35,6 @@ namespace RPG.Control
             _mover = GetComponent<Mover>();
             _navMeshAgent = GetComponent<NavMeshAgent>();
             guardPosition = transform.position;
-            print(gameObject.name + " start position " + guardPosition);
         }
 
         void Update()
@@ -51,7 +50,6 @@ namespace RPG.Control
             else 
             {
                 PatrolBehaviour();
-                //Debug.Log(gameObject.name + " returning to start position. " + guardPosition);
             }
             
             UpdateTimers();

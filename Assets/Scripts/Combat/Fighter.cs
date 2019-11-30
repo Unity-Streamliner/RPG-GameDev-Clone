@@ -67,7 +67,6 @@ namespace RPG.Combat {
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget;
-            print("Take that you short, squat peasant!");
         }
 
         public void Cancel()
