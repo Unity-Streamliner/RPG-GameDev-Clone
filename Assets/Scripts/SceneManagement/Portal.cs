@@ -16,8 +16,8 @@ namespace RPG.SceneManagement
         [SerializeField] int sceneToLoad = -1;
         [SerializeField] Transform spawnPoint;
         [SerializeField] DestinationIndentifier destination;
-        [SerializeField] float fadeOutTime = 3f;
-        [SerializeField] float fadeWaitTime = 2f;
+        [SerializeField] float fadeOutTime = 0.5f;
+        [SerializeField] float fadeWaitTime = 0.5f;
         [SerializeField] float fadeInTime = 1f;
         
         private void OnTriggerEnter(Collider other) {
@@ -39,11 +39,10 @@ namespace RPG.SceneManagement
             print("re-load new scene");
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
             print("scene has been reloaded");
-            Fader faderOtherScene = FindObjectOfType<Fader>();
             Portal portal = GetOtherPortal();
             UpdatePlayer(portal);
             yield return new WaitForSeconds(fadeWaitTime);
-            yield return faderOtherScene.FadeIn(fadeInTime);
+            yield return fader.FadeIn(fadeInTime);
             Destroy(this.gameObject);
         }
 
