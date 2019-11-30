@@ -33,15 +33,22 @@ namespace RPG.SceneManagement
                 yield break;
             }
             Fader fader = FindObjectOfType<Fader>();
-            print("fade out " + fader);
             yield return fader.FadeOut(fadeOutTime);
+
+            // Save current level
+            SavingWrapper wrapper = FindObjectOfType<SavingWrapper>();
+            wrapper.Save();
+
             DontDestroyOnLoad(this.gameObject);
-            print("re-load new scene");
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
-            print("scene has been reloaded");
+            yield return new WaitForSeconds(fadeWaitTime);
+
+            // Load current level
+            wrapper.Load();
+
             Portal portal = GetOtherPortal();
             UpdatePlayer(portal);
-            yield return new WaitForSeconds(fadeWaitTime);
+            
             yield return fader.FadeIn(fadeInTime);
             Destroy(this.gameObject);
         }
@@ -60,8 +67,10 @@ namespace RPG.SceneManagement
         private void UpdatePlayer(Portal portal) 
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<NavMeshAgent>().enabled = false;
             player.GetComponent<NavMeshAgent>().Warp(portal.spawnPoint.transform.position);
             player.transform.rotation = portal.spawnPoint.transform.rotation;
+            player.GetComponent<NavMeshAgent>().enabled = true;
 
         }
     }
