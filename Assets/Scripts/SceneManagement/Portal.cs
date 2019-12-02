@@ -48,6 +48,8 @@ namespace RPG.SceneManagement
 
             Portal portal = GetOtherPortal();
             UpdatePlayer(portal);
+
+            wrapper.Save();
             
             yield return fader.FadeIn(fadeInTime);
             Destroy(this.gameObject);
