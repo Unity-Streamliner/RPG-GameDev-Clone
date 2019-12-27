@@ -45,8 +45,8 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination, float speedFraction) {
             _navMeshAgent.SetDestination(destination);
+            _navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction);
             _navMeshAgent.isStopped = false;
-            _navMeshAgent.speed = maxSpeed * Mathf.Clamp01(speedFraction); 
         }
 
         public void Cancel()
@@ -56,14 +56,19 @@ namespace RPG.Movement
 
         public object CaptureState()
         {
-            return new SerializableVector3(transform.position);
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data["position"] = new SerializableVector3(transform.position);
+            data["rotation"] = new SerializableVector3(transform.eulerAngles);
+            return data;
         }
 
         public void RestoreState(object state)
         {
-            _navMeshAgent.enabled = false;
-            transform.position = ((SerializableVector3)state).ToVector();
-            _navMeshAgent.enabled = true;
+            Dictionary<string, object> data = (Dictionary<string, object>)state;
+            GetComponent<NavMeshAgent>().enabled = false;
+            transform.position = ((SerializableVector3)data["position"]).ToVector();
+            transform.eulerAngles = ((SerializableVector3)data["rotation"]).ToVector();
+            GetComponent<NavMeshAgent>().enabled = true;
         }
     }
 }

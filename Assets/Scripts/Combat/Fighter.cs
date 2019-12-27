@@ -43,6 +43,12 @@ namespace RPG.Combat {
         public bool CanAttack(GameObject combatTarget) 
         {
             if (combatTarget == null) return false;
+            // cannot attack itself
+            if (gameObject.tag == combatTarget.tag)
+            {
+                Debug.Log("Cannot attack itself");
+                return false;
+            }
             Health targetHealth = combatTarget.GetComponent<Health>();
             return targetHealth != null && !targetHealth.IsDead;
         }  
