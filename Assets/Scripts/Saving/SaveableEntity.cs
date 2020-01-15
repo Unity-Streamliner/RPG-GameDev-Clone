@@ -1,5 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.AI;
+using RPG.Core;
 
 namespace RPG.Saving
 {
@@ -18,12 +20,17 @@ namespace RPG.Saving
         public object CaptureState()
         {
             print("CaptureState for GetUniqueIdentifier = " + GetUniqueIdentifier());
-            return null;
+            return new SerializableVector3(transform.position);
         }
 
         public void RestoreState(object state)
         {
             print("Restoring state for " + GetUniqueIdentifier());
+            GetComponent<NavMeshAgent>().enabled = false;
+            transform.position = (state as SerializableVector3).ToVector();
+            GetComponent<NavMeshAgent>().enabled = true;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+            
         }
 
         void Update()
