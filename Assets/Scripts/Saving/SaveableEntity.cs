@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
+using System.Collections.Generic;
 
 namespace RPG.Saving
 {
@@ -19,17 +20,32 @@ namespace RPG.Saving
 
         public object CaptureState()
         {
-            print("CaptureState for GetUniqueIdentifier = " + GetUniqueIdentifier());
-            return new SerializableVector3(transform.position);
+            Dictionary<string, object> state = new Dictionary<string, object>();
+            foreach(ISavable savable in GetComponents<ISavable>())
+            {
+                state[savable.GetType().ToString()] = savable.CaptureState();
+            }
+            return state;
+            //print("CaptureState for GetUniqueIdentifier = " + GetUniqueIdentifier());
+            //return new SerializableVector3(transform.position);
         }
 
         public void RestoreState(object state)
         {
-            print("Restoring state for " + GetUniqueIdentifier());
-            GetComponent<NavMeshAgent>().enabled = false;
-            transform.position = (state as SerializableVector3).ToVector();
-            GetComponent<NavMeshAgent>().enabled = true;
-            GetComponent<ActionScheduler>().CancelCurrentAction();
+            Dictionary<string, object> stateDict = (Dictionary<string, object>)state;
+            foreach (ISavable savable in GetComponents<ISavable>())
+            {
+                string typeString = savable.GetType().ToString();
+                if (stateDict.ContainsKey(typeString))
+                {
+                    savable.RestoreState(stateDict[typeString]);
+                }
+            }
+            //print("Restoring state for " + GetUniqueIdentifier());
+            //GetComponent<NavMeshAgent>().enabled = false;
+            //transform.position = (state as SerializableVector3).ToVector();
+            //GetComponent<NavMeshAgent>().enabled = true;
+            //GetComponent<ActionScheduler>().CancelCurrentAction();
             
         }
 
