@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
 using System.Collections.Generic;
+using System;
 
 namespace RPG.Saving
 {
@@ -11,7 +12,8 @@ namespace RPG.Saving
     public class SaveableEntity : MonoBehaviour
     {
 
-        [SerializeField] string uniqueIdentifier = ""; 
+        [SerializeField] string uniqueIdentifier = "";
+        static Dictionary<string, SaveableEntity> globalLookup = new Dictionary<string, SaveableEntity>();
 
         public string GetUniqueIdentifier()
         {
@@ -58,13 +60,38 @@ namespace RPG.Saving
             SerializedObject serializedObject = new SerializedObject(this);
             SerializedProperty property = serializedObject.FindProperty("uniqueIdentifier");
 
-            if (string.IsNullOrEmpty(property.stringValue))
+            if (string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue))
             {
                 property.stringValue = System.Guid.NewGuid().ToString();
                 serializedObject.ApplyModifiedProperties();
             }
 
+            globalLookup[property.stringValue] = this;
+
             Debug.Log("Editor causes this Update");
+        }
+
+        private bool IsUnique(string candidate)
+        {
+            if (!globalLookup.ContainsKey(candidate)) return true;
+
+            // check if we are point at the same entity
+            if (globalLookup[candidate] == this) return true;
+
+            // if item has been removed
+            if (globalLookup[candidate] == null)
+            {
+                globalLookup.Remove(candidate);
+                return true;
+            }
+
+            if (globalLookup[candidate].GetUniqueIdentifier() != candidate)
+            {
+                globalLookup.Remove(candidate);
+                return true;
+            }
+
+            return false;
         }
     }
 }
