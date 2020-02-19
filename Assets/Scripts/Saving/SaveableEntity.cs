@@ -50,7 +50,7 @@ namespace RPG.Saving
             //GetComponent<ActionScheduler>().CancelCurrentAction();
             
         }
-
+#if UNITY_EDITOR
         void Update()
         {
             if (Application.IsPlaying(gameObject)) return;
@@ -70,6 +70,7 @@ namespace RPG.Saving
 
             Debug.Log("Editor causes this Update");
         }
+#endif
 
         private bool IsUnique(string candidate)
         {

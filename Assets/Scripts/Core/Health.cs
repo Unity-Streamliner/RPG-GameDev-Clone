@@ -1,8 +1,9 @@
 using UnityEngine;
+using RPG.Saving;
 
 namespace RPG.Core 
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, ISavable
     {
         [SerializeField] float health = 100f;
 
