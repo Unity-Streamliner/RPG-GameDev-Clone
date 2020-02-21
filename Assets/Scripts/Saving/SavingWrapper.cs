@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 namespace RPG.Saving
 {
     public class SavingWrapper : MonoBehaviour
     {
         [SerializeField] const string defaultSaveFile = "save";
 
-        private void Start()
+        private IEnumerator Start()
         {
-            Load();
+            yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         }
 
         private void Update()
