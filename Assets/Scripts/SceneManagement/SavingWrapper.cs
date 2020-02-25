@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
-namespace RPG.Saving
+using RPG.Saving;
+
+namespace RPG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
@@ -8,7 +10,10 @@ namespace RPG.Saving
 
         private IEnumerator Start()
         {
+            Fader fader = FindObjectOfType<Fader>();
+            fader.FadeOutImmediate();
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
+            yield return fader.FadeIn(0.3f);
         }
 
         private void Update()
