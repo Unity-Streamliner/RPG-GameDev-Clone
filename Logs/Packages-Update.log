@@ -56,3 +56,11 @@ The following packages were removed:
   com.unity.ugui@1.0.0
   com.unity.xr.legacyinputhelpers@2.0.2
   com.unity.modules.androidjni@1.0.0
+
+=== Sun Mar 22 13:07:33 2020
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.analytics from version 3.2.2 to 3.2.3
