@@ -111,7 +111,21 @@ namespace RPG.Combat {
         {
             if (target == null) return;
             Health targetHealth = target.GetComponent<Health>();
-            if (targetHealth != null && currentWeapon != null) targetHealth.TakeDamage(currentWeapon.getDamage());
+            if (targetHealth != null && currentWeapon != null)
+            {
+                if (currentWeapon.HasProjectile())
+                {
+                    currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, targetHealth);
+                } else 
+                {
+                    targetHealth.TakeDamage(currentWeapon.getDamage());
+                }
+            }
+        }
+
+        void Shoot()
+        {
+            Hit();
         }
     }
 

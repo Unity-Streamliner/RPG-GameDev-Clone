@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using RPG.Core;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
 
-    [SerializeField] Transform target;
     [SerializeField] float speed;
 
+    Health target;
+
     // Start is called before the first frame update
-    void Start()
+    public void SetTarget(Health target) 
     {
-        
+        this.target = target;
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class Projectile : MonoBehaviour
     private Vector3 GetAimLocation() 
     {
         CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
-        if (targetCapsule == null) return target.position;
-        return target.position + Vector3.up * targetCapsule.height/2;
+        if (targetCapsule == null) return target.transform.position;
+        return target.transform.position + Vector3.up * targetCapsule.height/2;
     }
 }
