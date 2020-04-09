@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] bool isHoming = false;
+    [SerializeField] GameObject hitEffect = null;
     Vector3 aim = Vector3.zero;
     Health target;
     float damage = 0;
@@ -44,6 +45,7 @@ public class Projectile : MonoBehaviour
         if (collider.gameObject.GetComponent<Health>() != target) return;
         if (target.IsDead) return;
         target.TakeDamage(damage);
+        if (hitEffect != null ) Instantiate(hitEffect, GetAimLocation(), transform.rotation);
         GameObject.Destroy(this.gameObject);
     }
 }
