@@ -11,6 +11,7 @@ namespace RPG.Combat {
         [SerializeField] float timeBetweenAttacks = 1f;
         
         [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] string defaultWeaponName = "Unarmed";
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
 
@@ -25,7 +26,8 @@ namespace RPG.Combat {
         {
             _moverComponent = GetComponent<Mover>();
             _animator = GetComponent<Animator>();
-            EquipWeapon(defaultWeapon);
+            Weapon weapon = Resources.Load<Weapon>(defaultWeaponName);
+            EquipWeapon(weapon);
         }
 
         public void Update()
