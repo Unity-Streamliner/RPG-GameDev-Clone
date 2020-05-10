@@ -8,6 +8,7 @@ namespace RPG.Combat
     public class WeaponPickup : MonoBehaviour
     {
         [SerializeField] Weapon weapon;
+        [SerializeField] float respawnTime = 5.0f;
 
         void OnTriggerEnter(Collider collider) 
         {
@@ -17,8 +18,31 @@ namespace RPG.Combat
                 if (fighter != null) 
                 {
                     fighter.EquipWeapon(weapon);
-                    GameObject.Destroy(gameObject);
+                    StartCoroutine(HideForSeconds(respawnTime));
                 }
+            }
+        }
+
+        private IEnumerator HideForSeconds(float seconds) 
+        {
+            ShowPickup(false);
+            yield return new WaitForSeconds(seconds);
+            ShowPickup(true);
+        }
+
+        private void HidePickup() 
+        {
+            gameObject.GetComponent<SphereCollider>().enabled = false;
+            foreach(Transform child in gameObject.transform) {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        private void ShowPickup(bool enable)
+        {
+            gameObject.GetComponent<SphereCollider>().enabled = enable;
+            foreach(Transform child in gameObject.transform) {
+                child.gameObject.SetActive(enable);
             }
         }
     }
