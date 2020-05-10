@@ -26,6 +26,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bb720d077e1a742b591cd1444d1602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2903624415853007572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2618592327034736496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba0db1a55958a548aead6ff4085643d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenAttacks: 1
+  defaultWeapon: {fileID: 11400000, guid: ed45da0f28b76d542a2859ff8bcd7f04, type: 2}
+  rightHandTransform: {fileID: 5156179834905280553}
+  leftHandTransform: {fileID: 5156179834905223233}
 --- !u!1001 &964113375985585200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60,12 +76,6 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 11400000, guid: a7800f7ec5b9fdd4193eb1209f43945b,
-        type: 2}
-    - target: {fileID: -6980479246319942054, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
-        type: 3}
-      propertyPath: defaultWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: ed45da0f28b76d542a2859ff8bcd7f04,
         type: 2}
     - target: {fileID: -6980479246319942054, guid: 29fc8e9f35e5ccf4484bff8a3ffe1089,
         type: 3}

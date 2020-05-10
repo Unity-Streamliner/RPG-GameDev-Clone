@@ -32,6 +32,22 @@ MonoBehaviour:
   patrolPath: {fileID: 0}
   waypointTolerance: 1
   patrolSpeedFraction: 0.2
+--- !u!114 &5556311913353501856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000051841666772542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba0db1a55958a548aead6ff4085643d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBetweenAttacks: 1
+  defaultWeapon: {fileID: 11400000, guid: ed45da0f28b76d542a2859ff8bcd7f04, type: 2}
+  rightHandTransform: {fileID: 4614540347275600702}
+  leftHandTransform: {fileID: 4614540347275526972}
 --- !u!1001 &3672614391733497214
 PrefabInstance:
   m_ObjectHideFlags: 0
